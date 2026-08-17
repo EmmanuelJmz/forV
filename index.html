@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for u</title>
+
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Oswald";
+
+body {
+  font-family: "Oswald", sans-serif;
+background: #11111f;
+background: linear-gradient(90deg,rgba(17, 17, 31, 1) 0%, rgba(112, 34, 51, 1) 35%, rgba(41, 67, 138, 1) 100%);
+  font-wright: 200;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  text-align: center;
+}
+
+#countup p {
+  display: inline-block;
+  padding: 5px;
+  background: #ffa500;
+  margin: 0 0 20px;
+}
+
+.big-number {
+  font-size: 12em;
+  /*   margin-top: -12%; */
+  margin-top: -60px;
+  margin-bottom: -30px;
+  color: #f5e9cf;
+  font-weight: 600;
+}
+.back {
+  z-index: -100 !important;
+}
+.front {
+  z-index: 1 !important;
+}
+.label {
+  background-color: #f5e9cf;
+  color: #222222;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 0.14285714285714285em;
+  line-height: 20px;
+  margin-bottom: 30px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+
+.label2 {
+  color: #f5e9cf;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 0.14285714285714285em;
+  text-transform: uppercase;
+}
+
+    </style>
+</head>
+<body>
+    <div class="center-block">
+        <span class="front">
+          <p class="timeRefDays label center-block">Emma ❤️ Val</p>
+        </span>
+        <span class="back">
+          <p id="days" class="big-number center-block">0</p< /span>
+      
+            <span class="front">
+              <p class="timeRefDays label2 center-block">días juntos</p>
+            </span>
+      </div>
+      <!--   <p id="hours">00</p> -->
+      <!--   <p class="timeRefHours">hours</p> -->
+      <!--   <p id="minutes">00</p> -->
+      <!--   <p class="timeRefMinutes">minutes</p> -->
+      <!--   <p id="seconds">00</p> -->
+      <!--   <p class="timeRefSeconds">seconds</p> -->
+      </div>
+
+      <script>
+
+window.onload = function () {
+  upTime("august,08,2026,00:00:00");
+};
+function upTime(countTo) {
+  now = new Date();
+  countTo = new Date(countTo);
+  difference = now - countTo;
+
+  days = Math.floor((difference / (60 * 60 * 1000 * 24)) * 1);
+  hours = Math.floor(
+    ((difference % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000)) * 1
+  );
+  mins = Math.floor(
+    (((difference % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) / (60 * 1000)) *
+      1
+  );
+  secs = Math.floor(
+    ((((difference % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) % (60 * 1000)) /
+      1000) *
+      1
+  );
+
+  document.getElementById("days").firstChild.nodeValue = days;
+  document.getElementById("hours").firstChild.nodeValue = hours;
+  document.getElementById("minutes").firstChild.nodeValue = mins;
+  document.getElementById("seconds").firstChild.nodeValue = secs;
+
+  clearTimeout(upTime.to);
+  upTime.to = setTimeout(function () {
+    upTime(countTo);
+  }, 1000);
+}
+
+      </script>
+</body>
+</html>
